@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style.css" />
+<script>
+function toggleMenu() {
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenu.classList.toggle('active');
+}
+</script>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<title>Pet Adoption</title>
+</head>
+<body>
+<nav>
+  <div class="logo-container">
+    <img src="adoptly-removebg-preview.png" alt="Adoptly Logo">
+    <div class="logo">Adoptly</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#find-a-pet">Find a Pet</a></li>
+    <li><a href="howitworks.html">How it Works</a></li>
+    <li><a href="#help">Help</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="#find-a-pet">Find a Pet</a>
+    <a href="how-it-works.html">How it Works</a>
+    <a href="#help">Help</a>
+  </div>
+</nav>
+
+<div class="hero" id="home">
+  <img src="https://i.pinimg.com/736x/63/f7/58/63f758eeadd449b03ffeb7e56861c6f3.jpg" alt="Golden Retriever puppy playing in a field">
+  <img src="https://i.pinimg.com/736x/78/da/5d/78da5db40d3554b5544c5c13ad63c4e4.jpg" alt="Beagle puppy sleeping in a basket">
+  <img src="https://i.pinimg.com/736x/bb/0f/ac/bb0faceb46ca0593a61efbd1fdb4e308.jpg" alt="French Bulldog puppy looking at the camera">
+  <div class="hero-content">
+    <h1>Find Your New Best Friend</h1>
+    <button>Donate Now</button>
+    <button class="view-pets">View Available Pets</button>
+  </div>
+</div>
+
+<section class="find-adopt" id="find-a-pet">
+  <h2>Find & Adopt</h2>
+  <div class="search-bar">
+    <input type="text" placeholder="e.g. Labrador or New York" />
+    <select>
+      <option>Dog</option>
+      <option>Cat</option>
+      <option>Other</option>
+    </select>
+    <button>Search</button>
+  </div>
+</section>
+
+<section class="adopt-today">
+  <img src="https://i.pinimg.com/736x/5c/8d/53/5c8d530541ca44b9162b9e35b3a5180e.jpg" alt="Happy Labrador dog smiling" />
+  <div>
+    <h2>Adopt Today!</h2>
+    <p>Help give these adorable pets a second chance at life.</p>
+    <button>Get Started</button>
+  </div>
+</section>
+
+<section class="help" id="help">
+  <h2>How You Can Help</h2>
+  <div class="help-options">
+    <div>
+      <img src="donate.png" alt="Donate Icon" class="help-icon">
+      <h3>Donate</h3>
+      <p>Your contributions save lives.</p>
+    </div>
+    <div>
+      <img src="v.png" alt="Volunteer Icon" class="help-icon">
+      <h3>Volunteer</h3>
+      <p>Join our community of animal lovers.</p>
+    </div>
+    <div>
+      <img src="fo.png" alt="Foster Icon" class="help-icon">
+      <h3>Foster</h3>
+      <p>Provide temporary homes for pets in need.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Adoptly. All rights reserved. | <a href="#"> Devika | Eldhose | Deon</a></p>
+</footer>
+</body>
+</html>
