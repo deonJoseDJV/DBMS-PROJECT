@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adopt a Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style2.css') }}">
+</head>
+<body>
+    <h2>Adopt a Pet</h2>
+
+    <!-- Display a table of available pets -->
+    <table>
+        <thead>
+            <tr>
+                <th>Pet ID</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Donor Name</th>
+                <th>Donor Phone</th>
+                <th>Donor Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr>
+                <td>{{ pet.pet_id }}</td>
+                <td>{{ pet.species }}</td>
+                <td>{{ pet.breed }}</td>
+                <td>{{ pet.donor_name }}</td>
+                <td>{{ pet.donor_phone }}</td>
+                <td>{{ pet.donor_address }}</td>
+                <td>
+                    <form method="POST" action="/api/adopt">
+                        <input type="hidden" name="pet_id" value="{{ pet.pet_id }}">
+                        <button type="submit">Adopt</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Form for adopter details -->
+    <h3>Adopter Details</h3>
+    <form id="adopt-form" method="POST" action="/api/adopt">
+        <input type="text" name="adopter_name" placeholder="Your Name" required><br>
+        <input type="text" name="adopter_phone" placeholder="Phone Number" required><br>
+        <input type="text" name="adopter_address" placeholder="Address" required><br>
+        <input type="number" name="pet_id" placeholder="Pet ID to Adopt" required><br>
+        <button type="submit">Adopt</button>
+    </form>
+
+    <!-- Include the JavaScript code here -->
+    <script>
+        document.getElementById('adopt-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('/api/adopt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message); // Show success message
+                    this.reset(); // Clear the form
+                } else {
+                    alert(`Error: ${result.message}`); // Show error message
+                }
+            } catch (error) {
+                alert('An error occurred while submitting the form.');
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

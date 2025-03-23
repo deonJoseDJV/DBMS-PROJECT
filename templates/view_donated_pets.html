@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+  <title>View Donated Pets</title>
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <img src="{{ url_for('static', filename='adoptly-removebg-preview.png') }}" alt="Adoptly Logo">
+      <div class="logo">Adoptly</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="#find-a-pet">Find a Pet</a></li>
+      <li><a href="{{ url_for('how_it_works') }}">How it Works</a></li>
+      <li><a href="{{ url_for('view_donated_pets') }}">View Donated Pets</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="#find-a-pet">Find a Pet</a>
+      <a href="{{ url_for('how_it_works') }}">How it Works</a>
+      <a href="{{ url_for('view_donated_pets') }}">View Donated Pets</a>
+    </div>
+  </nav>
+
+  <section class="donated-pets">
+    <h2>Donated Pets</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Pet ID</th>
+          <th>Species</th>
+          <th>Breed</th>
+          <th>Donor Name</th>
+          <th>Donor Phone</th>
+          <th>Donor Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pet in donated_pets %}
+        <tr>
+          <td>{{ pet.pet_id }}</td>
+          <td>{{ pet.species }}</td>
+          <td>{{ pet.breed }}</td>
+          <td>{{ pet.donor_name }}</td>
+          <td>{{ pet.donor_phone }}</td>
+          <td>{{ pet.donor_address }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Adoptly. All rights reserved. | <a href="#"> Devika | Eldhose | Deon</a></p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    function toggleMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

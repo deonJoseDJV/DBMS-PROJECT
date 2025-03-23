@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate a Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style2.css') }}">
+</head>
+<body>
+    <h2>Donate a Pet</h2>
+    <form id="donate-form" action="/api/donate" method="POST">
+        <input type="text" name="donor_name" placeholder="Your Name" required><br>
+        <input type="text" name="donor_phone" placeholder="Phone Number" required><br>
+        <input type="text" name="donor_address" placeholder="Address" required><br>
+        <input type="text" name="species" placeholder="Pet Species" required><br>
+        <input type="text" name="breed" placeholder="Breed" required><br>
+        <button type="submit">Donate</button>
+    </form>
+
+    <script>
+        document.getElementById('donate-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('/api/donate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message); // Show success message
+                    this.reset(); // Clear the form
+                } else {
+                    alert(`Error: ${result.message}`); // Show error message
+                }
+            } catch (error) {
+                alert('An error occurred while submitting the form.');
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

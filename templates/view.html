@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Pets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style2.css') }}">
+</head>
+<body>
+    <h2>Available Pets</h2>
+    <table border="1">
+        <tr>
+            <th>Pet ID</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Donor Contact</th>
+        </tr>
+        {% for pet in pets %}
+        <tr>
+            <td>{{ pet[0] }}</td>
+            <td>{{ pet[1] }}</td>
+            <td>{{ pet[2] }}</td>
+            <td>{{ pet[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
