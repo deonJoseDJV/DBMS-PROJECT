@@ -111,10 +111,14 @@ def api_donate():
 def api_adopt():
     try:
         # Get form data
-        adopter_name = request.form.get('adopter_name')
-        adopter_phone = request.form.get('adopter_phone')
-        adopter_address = request.form.get('adopter_address')
-        pet_id = request.form.get('pet_id')
+        data = request.get_json()  # Use request.get_json() for JSON data
+        if not data:
+            return jsonify({"success": False, "message": "No data provided"}), 400
+
+        adopter_name = data.get('adopter_name')
+        adopter_phone = data.get('adopter_phone')
+        adopter_address = data.get('adopter_address')
+        pet_id = data.get('pet_id')
 
         # Validate that all fields are present
         if not all([adopter_name, adopter_phone, adopter_address, pet_id]):
